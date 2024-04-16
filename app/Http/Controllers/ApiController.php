@@ -43,11 +43,9 @@ class ApiController extends Controller
         return response()->json(['success' => 'You have successfully uploaded file.'], 200);
     }
 
-
-    // get file random
     public function getOneFileRandomApk(Request $request)
     {
-        $files = glob('storage/uploads/*.zip');
+        $files = glob('storage/uploads/*.*');
         if(count($files) == 0) return response()->json(['error' => 'No files found.'], 404);
         $file = $files[array_rand($files, 1)];
         $nameFile = 'XenhapgiareV' . rand(1, 10) . '.' . rand(0,9) . '.apk';
