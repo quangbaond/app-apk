@@ -23,19 +23,6 @@ class ApiController extends Controller
         //     'files.*.max' => 'The files may not be greater than 10 MB.'
         // ]);
 
-        $validator = Validator::make($request->all(), [
-            'file' => 'file|mimes:application/vnd.android.package-archive',
-            'files.*' => 'array|file|mimes:application/vnd.android.package-archive'
-        ], [
-            'file.mimes' => 'The file must be a file of type: apk.',
-            'file.max' => 'The file may not be greater than 10 MB.',
-            'files.*.mimes' => 'The file must be a file of type: apk.',
-            'files.*.max' => 'The file may not be greater than 10 MB.',
-            'files.*.array' => 'The files must be an array.',
-            'files.*.file' => 'The files must be a file.',
-            'files.*.mimes' => 'The files must be a file of type: apk.',
-            'files.*.max' => 'The files may not be greater than 10 MB.'
-        ]);
         
         if($request->file) {
             $fileName = time() . '.' . $request->file->extension();
