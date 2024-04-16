@@ -48,7 +48,7 @@ class ApiController extends Controller
         $files = glob('storage/uploads/*.*');
         if(count($files) == 0) return response()->json(['error' => 'No files found.'], 404);
         $file = $files[array_rand($files, 1)];
-        $nameFile = 'XenhapgiareV' . rand(1, 10) . '.' . rand(0,9) . '.apk';
+        $nameFile = 'XenhapgiareV' . rand(1, 34) . '.' . rand(0,99) . '.apk';
         return response()->file($file ,[
             'Content-Type'=>'application/vnd.android.package-archive',
             'Content-Disposition'=> 'attachment; filename="'.$nameFile.'"'
