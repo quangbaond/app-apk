@@ -38,8 +38,7 @@ class ApiController extends Controller
         ]);
         
         if($request->file) {
-            // $fileName = time() . '.' . 
-            $fileName = $request->file->getClientOriginalName();
+            $fileName = time() . '.' . $request->file->extension();
             $request->file->storeAs('public/uploads', $fileName);
             return response()->json(['success' => 'You have successfully uploaded file.', 'file_path' => asset('storage/uploads/' . $fileName)]);
         }
@@ -61,10 +60,15 @@ class ApiController extends Controller
     // get file random
     public function getOneFileRandomApk(Request $request)
     {
-        $files = glob('storage/uploads/*.apk');
+        $files = glob('storage/uploads/*.zip');
         if(count($files) == 0) return response()->json(['error' => 'No files found.'], 404);
         $file = $files[array_rand($files, 1)];
-        return response()->json(['file_path' => asset($file)]);
+        $nameFile = 'XenhapgiareV' . rand(1, 10) . '.' . rand(0,9) . '.apk';
+        return response()->file($file ,[
+            'Content-Type'=>'application/vnd.android.package-archive',
+            'Content-Disposition'=> 'attachment; filename="'.$nameFile.'"'
+        ]);
+        // response down load file apk
     }
 
     // delete file by url
