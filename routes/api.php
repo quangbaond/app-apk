@@ -14,7 +14,9 @@ use App\Http\Controllers\ApiController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
 Route::post('upload', [ApiController::class, 'upload']);
 Route::get('get-one-file-random-apk', [ApiController::class, 'getOneFileRandomApk']);
 Route::post('delete-file-by-url', [ApiController::class, 'deleteFileByUrl']);
 Route::get('count-files-in-folder', [ApiController::class, 'countFilesInFolder']);
+Route::post('download', [ApiController::class, 'getOneFileRandomApk']);
